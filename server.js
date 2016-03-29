@@ -9,7 +9,6 @@ favicon = require('serve-favicon');
 logger = require('morgan');
 cookieParser = require('cookie-parser');
 bodyParser = require('body-parser');
-morgan = require( 'morgan' );
 methodOverride = require( 'method-override' );
 
 port = process.env.PORT || 8080;
@@ -21,6 +20,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
