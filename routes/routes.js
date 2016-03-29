@@ -11,12 +11,9 @@ module.exports = function(app) {
   });
 
   app.get('/', function(req, res, next) {
-    res.render('index', {title: 'Welcome'});
+    res.render('index', {title: 'Budget Pie'});
   });
   app.get('/budgets', function(req, res, next) {
     res.render('budgets', {title: 'Budgets'});
-  });
-  app.get('/budgets/:budget', dataHelper.getData, function(req, res, next) {
-    res.render('budget', {title: req.budget});
   });
 };
