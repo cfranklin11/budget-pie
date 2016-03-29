@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var dataHelper;
 
@@ -24,8 +24,6 @@ module.exports = function(app) {
     ages = form.ages || '';
     children = form.children || '';
     services = form.services || '';
-
-    console.log(form);
 
     agesLength = ages.length;
     childrenLength = children.length;
@@ -56,9 +54,7 @@ module.exports = function(app) {
     }
 
     query = '?' + ages + work + income + live + student + relationship +
-      children + immigration + indigenous + services
-
-      console.log(query);
+      children + immigration + indigenous + services;
 
     res.redirect('/budgets' + query);
   });
