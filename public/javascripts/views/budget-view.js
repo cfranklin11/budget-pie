@@ -1,3 +1,5 @@
+'use strict';
+
 var bbApp = bbApp || {};
 
 (function($) {

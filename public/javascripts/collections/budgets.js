@@ -3,9 +3,7 @@
 var bbApp = bbApp || {};
 
 (function () {
-  var Budgets;
-
-  Budgets = Backbone.Collection.extend({
+  var Budgets = Backbone.Collection.extend({
     model: bbApp.Budget
   });
 
