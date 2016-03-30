@@ -2,109 +2,139 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-    <form method="post" action="/">
-      <fieldset>
-        <legend>Ages</legend>
-        <label for="ages-1824">18 - 24</label>
-        <input type="checkbox" name="ages" id="ages-1824" value="18-24">
-        <label for="ages-2534">25 - 34</label>
-        <input type="checkbox" name="ages" id="ages-2534" value="25-34">
-        <label for="ages-3544">35 - 44</label>
-        <input type="checkbox" name="ages" id="ages-3544" value="35-44">
-        <label for="ages-4554">45 - 54</label>
-        <input type="checkbox" name="ages" id="ages-4554" value="45-54">
-        <label for="ages-5564">55 - 64</label>
-        <input type="checkbox" name="ages" id="ages-5564" value="55-64">
-        <label for="ages-65">65+</label>
-        <input type="checkbox" name="ages" id="ages-65" value="65">
-      </fieldset>
-      <fieldset>
-        <legend>Work Status</legend>
-        <label for="work-fulltime">Employed: Full-Time</label>
-        <input type="radio" name="work" id="work-fulltime" value="fulltime">
-        <label for="work-parttime">Employed: Part-Time</label>
-        <input type="radio" name="work" id="work-parttime" value="parttime">
-        <label for="work-unemployed">Unemployed</label>
-        <input type="radio" name="work" id="work-unemployed" value="unemployed">
-      </fieldset>
-      <fieldset>
-        <legend>Yearly Household Income</legend>
-        <label for="income-050">Up to $50K</label>
-        <input type="radio" name="income" id="income-050" value="0-50">
-        <label for="income-51100">$51 - $100K</label>
-        <input type="radio" name="income" id="income-51100" value="51-100">
-        <label for="income-101150">$101 - $150K</label>
-        <input type="radio" name="income" id="income-101150" value="101-150">
-        <label for="income-151">More than $150K</label>
-        <input type="radio" name="income" id="income-151" value="151">
-      </fieldset>
-      <fieldset>
-        <legend>Where are you living?</legend>
-        <label for="live-metro">Melbourne</label>
-        <input type="radio" name="live" id="live-metro" value="metro">
-        <label for="live-region">Regional Victoria</label>
-        <input type="radio" name="live" id="live-region" value="region">
-      </fieldset>
-      <fieldset>
-        <legend>Student?</legend>
-        <label for="student-no">No</label>
-        <input type="radio" name="student" id="student-no" value="no">
-        <label for="student-yes">Yes</label>
-        <input type="radio" name="student" id="student-yes" value="yes">
-      </fieldset>
-      <fieldset>
-        <legend>Relationship Status</legend>
-        <label for="rel-single">Single</label>
-        <input type="radio" name="relationship" id="rel-single" value="single">
-        <label for="rel-married">Married</label>
-        <input type="radio" name="relationship" id="rel-married" value="married">
-        <label for="rel-defacto">De Facto Relationship</label>
-        <input type="radio" name="relationship" id="rel-defacto" value="defacto">
-      </fieldset>
-      <fieldset>
-        <legend>Children?</legend>
-        <label for="children-04">Under 5 Years Old</label>
-        <input type="checkbox" name="children" id="children-04" value="0-4">
-        <label for="children-514">5 - 14 Years Old</label>
-        <input type="checkbox" name="children" id="children-514" value="5-14">
-        <label for="children-1518">15 - 18 Years Old</label>
-        <input type="checkbox" name="children" id="children-1518" value="15-18">
-        <label for="children-1922">19 - 22 Years Old</label>
-        <input type="checkbox" name="children" id="children-1922" value="19-22">
-        <label for="children-23">23+ Years Old</label>
-        <input type="checkbox" name="children" id="children-23" value="23">
-        <label for="children-0">None</label>
-        <input type="checkbox" name="children" id="children-0" value="0">
-      </fieldset>
-      <fieldset>
-        <legend>Immigration Status</legend>
-        <label for="immi-citizen">Citizen</label>
-        <input type="radio" name="immigration" id="immi-citizen" value="citizen">
-        <label for="immi-permanent">Permanent Resident</label>
-        <input type="radio" name="immigration" id="immi-permanent" value="permanent">
-        <label for="immi-temporary">Temporary Resident</label>
-        <input type="radio" name="immigration" id="immi-temporary" value="temporary">
-      </fieldset>
-      <fieldset>
-        <legend>Indigenous or Torres Straight Islander?</legend>
-        <label for="indigenous-yes">Yes</label>
-        <input type="radio" name="indigenous" id="indigenous-yes" value="yes">
-        <label for="indigenous-no">No</label>
-        <input type="radio" name="indigenous" id="indigenous-no" value="no">
-      </fieldset>
-      <fieldset>
-        <legend>Do you, or someone in your household, use any of the following services?</legend>
-        <label for="services-mental">Mental Health Services</label>
-        <input type="checkbox" name="services" id="services-mental" value="mental-health">
-        <label for="services-physical">Services for Physical Disabilities</label>
-        <input type="checkbox" name="services" id="services-physical" value="physical-disability">
-      </fieldset>
-      <button type="submit">Submit</button>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Group Demographic Info
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+
+          <form method="post" action="/">
+            <fieldset>
+              <legend>Ages</legend>
+              <label for="ages-1824">18 - 24</label>
+              <input type="checkbox" name="ages" id="ages-1824" value="18-24">
+              <label for="ages-2534">25 - 34</label>
+              <input type="checkbox" name="ages" id="ages-2534" value="25-34">
+              <label for="ages-3544">35 - 44</label>
+              <input type="checkbox" name="ages" id="ages-3544" value="35-44">
+              <label for="ages-4554">45 - 54</label>
+              <input type="checkbox" name="ages" id="ages-4554" value="45-54">
+              <label for="ages-5564">55 - 64</label>
+              <input type="checkbox" name="ages" id="ages-5564" value="55-64">
+              <label for="ages-65">65+</label>
+              <input type="checkbox" name="ages" id="ages-65" value="65">
+            </fieldset>
+            <fieldset>
+              <legend>Work Status</legend>
+              <label for="work-fulltime">Employed: Full-Time</label>
+              <input type="radio" name="work" id="work-fulltime" value="fulltime">
+              <label for="work-parttime">Employed: Part-Time</label>
+              <input type="radio" name="work" id="work-parttime" value="parttime">
+              <label for="work-unemployed">Unemployed</label>
+              <input type="radio" name="work" id="work-unemployed" value="unemployed">
+            </fieldset>
+            <fieldset>
+              <legend>Yearly Household Income</legend>
+              <label for="income-050">Up to $50K</label>
+              <input type="radio" name="income" id="income-050" value="0-50">
+              <label for="income-51100">$51 - $100K</label>
+              <input type="radio" name="income" id="income-51100" value="51-100">
+              <label for="income-101150">$101 - $150K</label>
+              <input type="radio" name="income" id="income-101150" value="101-150">
+              <label for="income-151">More than $150K</label>
+              <input type="radio" name="income" id="income-151" value="151">
+            </fieldset>
+            <fieldset>
+              <legend>Where are you living?</legend>
+              <label for="live-metro">Melbourne</label>
+              <input type="radio" name="live" id="live-metro" value="metro">
+              <label for="live-region">Regional Victoria</label>
+              <input type="radio" name="live" id="live-region" value="region">
+            </fieldset>
+            <fieldset>
+              <legend>Student?</legend>
+              <label for="student-no">No</label>
+              <input type="radio" name="student" id="student-no" value="no">
+              <label for="student-yes">Yes</label>
+              <input type="radio" name="student" id="student-yes" value="yes">
+            </fieldset>
+            <fieldset>
+              <legend>Relationship Status</legend>
+              <label for="rel-single">Single</label>
+              <input type="radio" name="relationship" id="rel-single" value="single">
+              <label for="rel-married">Married</label>
+              <input type="radio" name="relationship" id="rel-married" value="married">
+              <label for="rel-defacto">De Facto Relationship</label>
+              <input type="radio" name="relationship" id="rel-defacto" value="defacto">
+            </fieldset>
+            <fieldset>
+              <legend>Children?</legend>
+              <label for="children-04">Under 5 Years Old</label>
+              <input type="checkbox" name="children" id="children-04" value="0-4">
+              <label for="children-514">5 - 14 Years Old</label>
+              <input type="checkbox" name="children" id="children-514" value="5-14">
+              <label for="children-1518">15 - 18 Years Old</label>
+              <input type="checkbox" name="children" id="children-1518" value="15-18">
+              <label for="children-1922">19 - 22 Years Old</label>
+              <input type="checkbox" name="children" id="children-1922" value="19-22">
+              <label for="children-23">23+ Years Old</label>
+              <input type="checkbox" name="children" id="children-23" value="23">
+              <label for="children-0">None</label>
+              <input type="checkbox" name="children" id="children-0" value="0">
+            </fieldset>
+            <fieldset>
+              <legend>Immigration Status</legend>
+              <label for="immi-citizen">Citizen</label>
+              <input type="radio" name="immigration" id="immi-citizen" value="citizen">
+              <label for="immi-permanent">Permanent Resident</label>
+              <input type="radio" name="immigration" id="immi-permanent" value="permanent">
+              <label for="immi-temporary">Temporary Resident</label>
+              <input type="radio" name="immigration" id="immi-temporary" value="temporary">
+            </fieldset>
+            <fieldset>
+              <legend>Indigenous or Torres Straight Islander?</legend>
+              <label for="indigenous-yes">Yes</label>
+              <input type="radio" name="indigenous" id="indigenous-yes" value="yes">
+              <label for="indigenous-no">No</label>
+              <input type="radio" name="indigenous" id="indigenous-no" value="no">
+            </fieldset>
+            <fieldset>
+              <legend>Do you, or someone in your household, use any of the following services?</legend>
+              <label for="services-mental">Mental Health Services</label>
+              <input type="checkbox" name="services" id="services-mental" value="mental-health">
+              <label for="services-physical">Services for Physical Disabilities</label>
+              <input type="checkbox" name="services" id="services-physical" value="physical-disability">
+            </fieldset>
+            <button type="submit">Submit</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+    <footer>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="/javascripts/lib/underscore.js"></script>
+      <script type="text/javascript" src="/javascripts/lib/backbone.js"></script>
+      <script type="text/javascript" src="/javascripts/models/budget.js"></script>
+      <script type="text/javascript" src="/javascripts/collections/budgets.js"></script>
+      <script type="text/javascript" src="/javascripts/views/budget-view.js"></script>
+      <script type="text/javascript" src="/javascripts/views/budgets-view.js"></script>
+    </footer>
   </body>
 </html>
