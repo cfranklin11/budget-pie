@@ -36,5 +36,19 @@ module.exports = {
       }
     });
     next();
+  },
+  sendJson: function(req, res, next) {
+    var form;
+
+    form = req.body;
+
+    console.log(form);
+    res.json({
+      title: 'dummy program',
+      dollarsThisYear: 100,
+      dollarsLastYear: 100,
+      percent: 0.2,
+      benefits: ['benefit1', 'benefit2', 'benefit3']
+    });
   }
 };

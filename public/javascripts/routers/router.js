@@ -37,6 +37,17 @@ var bbApp = bbApp || {};
 
       console.log(inputs);
       $('#collapseOne').collapse('hide');
+
+      bbApp.budgets.fetch({
+        data: inputs,
+        method: 'POST',
+        success: function(res, budgets) {
+          console.log(budgets);
+        },
+        error: function(res) {
+          console.log(res);
+        }
+      });
     }
   });
 
