@@ -34,6 +34,9 @@ var bbApp = bbApp || {};
         method: 'POST',
         success: function(res, budgets) {
           console.log(budgets);
+
+          bbApp.budgets.reset(budgets);
+          self.budgetsView = new bbApp.BudgetsView({collection: bbApp.budgets});
         },
         error: function(res) {
           console.log(res);

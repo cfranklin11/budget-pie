@@ -5,6 +5,7 @@ var bbApp = bbApp || {};
 (function($) {
   bbApp.BudgetView = Backbone.View.extend({
     className: 'budget-card',
+    id: this.model.title,
     template: _.template(
       '<h3><%= title %></h3>' +
       '<div><h4>DATA</h4></div>' +
@@ -16,7 +17,9 @@ var bbApp = bbApp || {};
       this.render();
     },
     render: function () {
-      var attributes = this.model.toJSON();
+      var attributes;
+
+      attributes = this.model.toJSON();
       this.$el.html(this.template(attributes));
       return this;
     }

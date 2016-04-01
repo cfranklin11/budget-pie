@@ -8,7 +8,7 @@ var bbApp = bbApp || {};
       title: 'dummy program',
       dollarsThisYear: 100,
       dollarsLastYear: 100,
-      percent: 0.2,
+      budgetPercent: 0.2,
       benefits: ['benefit1', 'benefit2', 'benefit3'],
       clickRate: 0.02,
       clicks: 2,

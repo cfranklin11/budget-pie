@@ -6,9 +6,7 @@ var bbApp = bbApp || {};
   bbApp.BudgetsView = Backbone.View.extend({
     el: $('#results'),
     template: _.template(
-      '<div id="data">' +
-      '</div>'
-    ),
+      '<div id="data"></div>'),
     initialize: function() {
       this.collection.on('add', this.addOne, this);
       this.collection.on('reset', this.render, this);
@@ -18,9 +16,11 @@ var bbApp = bbApp || {};
       this.$el.html(this.template());
       this.collection.each(this.addOne, this);
     },
-    addOne: function(account) {
-      var budgetView = new bbApp.BudgetView({model: budget});
-      $(this.el).append(budgetView.render().el);
+    addOne: function(budget) {
+      var budgetView;
+
+      budgetView = new bbApp.BudgetView({model: budget});
+      this.$el.children('#data').append(budgetView.render().el);
     }
   });
 })(jQuery);
