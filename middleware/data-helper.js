@@ -40,77 +40,111 @@ module.exports = {
     next();
   },
   sendJson: function(req, res, next) {
-    var inputs, inputString, item, i, re, budgetObject, budgetArray, thisPersona, personaBudgets;
+    var inputs, inputString, item, i, inputsRegExp, budgetObject, budgetArray,
+      thisPersona, personaBudgets, j;
 
     inputs = req.body['data[]'];
 
-    if (inputs.length > 1) {
-      inputString = inputs.join('|');
-    }
-    console.log(inputString);
-
-    re = new RegExp(inputString);
-    budgetObject = {};
-    budgetArray = [];
-
-    Persona.find({'name': re}, function(err, personas) {
-      if (err) {
-        console.log(err);
-        res.redirect('/');
+    if (inputs) {
+      if (Array.isArray(inputs)) {
+        inputString = inputs.join('|');
       }
+      console.log(inputString);
 
-      if (!personas) {
-        console.log('no personas found');
-        res.redirect('/');
-      }
+      inputsRegExp = new RegExp(inputString);
+      budgetObject = {};
+      budgetArray = [];
 
-      console.log(personas);
+      Persona.find({'name': inputsRegExp}, function(err, personas) {
+        if (err) {
+          console.log(err);
+          res.redirect('/');
+        } else {
 
-      for (i = 0; i < personas.length; i++) {
-        thisPersona = personas[i];
-        personaBudgets = thisPersona.budgets;
-
-        for (j = 0; j < personaBudgets.length; j++) {
-          if (budgetObject[personaBudgets[j].title]) {
-            budgetObject[personaBudgets[j].title].clickRate += personaBudgets[j].clickRate;
+          if (personas.length === 0) {
+            console.log('no personas found');
+            res.redirect('/');
           } else {
-            budgetObject[personaBudgets[j].title] = personaBudgets[j];
+
+            console.log(personas);
+
+            for (i = 0; i < personas.length; i++) {
+              thisPersona = personas[i];
+              personaBudgets = thisPersona.budgets;
+
+              for (j = 0; j < personaBudgets.length; j++) {
+                if (budgetObject[personaBudgets[j].title]) {
+                  budgetObject[personaBudgets[j].title].clickRate += personaBudgets[j].clickRate;
+                } else {
+                  budgetObject[personaBudgets[j].title] = personaBudgets[j];
+                }
+              }
+            }
+
+            for (item in budgetObject) {
+              budgetArray.push(budgetObject[item]);
+            }
+
+            budgetArray.sort(function(a, b) {
+              return b.clickRate - a.clickRate;
+            });
+
+            res.json(budgetArray);
           }
         }
-      }
-
-      for (item in budgetObject) {
-        budgetArray.push(budgetObject[item]);
-      }
-
-      budgetArray.sort(function(a, b) {
-        a.clickRate - b.clickRate;
       });
-
-      res.json(budgetArray);
-    });
+    } else {
+      res.redirect('/');
+    }
   },
   uploadData: function(req, res, next) {
-    var parser, i, persona, arrays;
+    var parser, i, thisData, personaName, thisBudget, personaObject,
+      personaArray, item, newPersona;
+
+    personaObject = {};
+    personaArray = [];
 
     parser = parse({delimiter: ',', columns: true}, function(err, data){
       for (i = 0; i < data.length; i++) {
 
-        arrays.push(data[i]);
+        thisData = data[i];
+        personaName = thisData.personaName;
+        thisBudget = {
+          title: thisData.budgetTitle,
+          dollarsThisYear: thisData.budgetDollarsThisYear,
+          dollarsLastYear: thisData.budgetDollarsLastYear,
+          budgetPercent: thisData.budgetBudgetPercent,
+          benefits: [thisData.budgetBenefits],
+          clickRate: thisData.budgetClickRate,
+          clicks: thisData.budgetClicks,
+          impressions: thisData.budgetImpressions
+        };
 
-        // persona = new Persona(data[i]);
-
-        // persona.save(function ( err ) {
-        //   if ( err ) {
-        //     console.log(err);
-        //     res.redirect('/');
-        //   }
-        // });
+        if (personaObject[personaName]) {
+          personaObject[personaName].budgets.push(thisBudget);
+        } else {
+          personaObject[personaName] = {
+            name: personaName,
+            budgets: [thisBudget]
+          };
+        }
       }
-console.log(arrays);
+
+      for (item in personaObject) {
+        personaArray.push(personaObject[item]);
+      }
+
+      Persona.create(personaArray, function(err, personas) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(personas);
+        }
+      });
+
       res.redirect('/');
     });
 
-    fs.createReadStream(__dirname + '/data.csv').pipe(parser);
+    fs.createReadStream(__dirname + '/test-data.csv').pipe(parser);
   }
 };

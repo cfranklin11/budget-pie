@@ -8,7 +8,7 @@ budgetSchema = mongoose.Schema({
   title: String,
   dollarsThisYear: Number,
   dollarsLastYear: Number,
-  percent: Number,
+  budgetPercent: Number,
   benefits: [String],
   clickRate: Number,
   clicks: Number,
