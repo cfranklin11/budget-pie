@@ -1,6 +1,6 @@
 'use strict';
 
-var mongoose, mapSchema, locationSchema;
+var mongoose, budgetSchema, personaSchema;
 
 mongoose = require('mongoose');
 budgetSchema = require('./budget.js');

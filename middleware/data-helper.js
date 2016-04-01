@@ -1,10 +1,12 @@
 'use strict';
 
-var request, fs, xlsx;
+var request, fs, xlsx, parse, Persona;
 
 request = require('request');
 fs = require('fs');
 xlsx = require('xlsx');
+parse = require('csv-parse');
+Persona = require('../models/persona.js');
 
 module.exports = {
   getData: function(req, res, next) {
@@ -38,17 +40,76 @@ module.exports = {
     next();
   },
   sendJson: function(req, res, next) {
-    var form;
+    var inputs, inputString, item, i, re, budgetObject, budgetArray, thisPersona, personaBudgets;
 
-    form = req.body;
+    inputs = req.body['data[]'];
 
-    console.log(form);
-    res.json({
-      title: 'dummy program',
-      dollarsThisYear: 100,
-      dollarsLastYear: 100,
-      percent: 0.2,
-      benefits: ['benefit1', 'benefit2', 'benefit3']
+    if (inputs.length > 1) {
+      inputString = inputs.join('|');
+    }
+    console.log(inputString);
+
+    re = new RegExp(inputString);
+    budgetObject = {};
+    budgetArray = [];
+
+    Persona.find({'name': re}, function(err, personas) {
+      if (err) {
+        console.log(err);
+        res.redirect('/');
+      }
+
+      if (!personas) {
+        console.log('no personas found');
+        res.redirect('/');
+      }
+
+      console.log(personas);
+
+      for (i = 0; i < personas.length; i++) {
+        thisPersona = personas[i];
+        personaBudgets = thisPersona.budgets;
+
+        for (j = 0; j < personaBudgets.length; j++) {
+          if (budgetObject[personaBudgets[j].title]) {
+            budgetObject[personaBudgets[j].title].clickRate += personaBudgets[j].clickRate;
+          } else {
+            budgetObject[personaBudgets[j].title] = personaBudgets[j];
+          }
+        }
+      }
+
+      for (item in budgetObject) {
+        budgetArray.push(budgetObject[item]);
+      }
+
+      budgetArray.sort(function(a, b) {
+        a.clickRate - b.clickRate;
+      });
+
+      res.json(budgetArray);
     });
+  },
+  uploadData: function(req, res, next) {
+    // var parser, i, budget;
+
+    // parser = parse({delimiter: ',', columns: true}, function(err, data){
+    //   for (i = 0; i < data.length; i++) {
+
+    //     budget = new Budget(data[i]);
+
+    //     budget.save(model,
+    //       function ( err ) {
+    //         if ( err ) {
+    //           console.log(err);
+    //           res.redirect('/');
+    //         }
+    //     });
+    //   }
+
+    //   res.redirect('/');
+    // });
+
+    // fs.createReadStream(__dirname + '/data.csv').pipe(parser);
   }
 };

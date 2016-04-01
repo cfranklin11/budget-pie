@@ -11,4 +11,8 @@ module.exports = function(app) {
   app.post('/', function(req, res, next) {
     dataHelper.sendJson(req, res, next);
   });
+
+  app.get('/upload', function(req, res, next) {
+    dataHelper.uploadData(req, res, next);
+  });
 };

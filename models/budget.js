@@ -6,13 +6,13 @@ mongoose = require('mongoose');
 
 budgetSchema = mongoose.Schema({
   title: String,
-  source: String,
   dollarsThisYear: Number,
   dollarsLastYear: Number,
   percent: Number,
-  relevance: Number,
-  timesCalled: Number,
-  benefits: [String]
+  benefits: [String],
+  clickRate: Number,
+  clicks: Number,
+  impressions: Number
 });
 
 module.exports = budgetSchema;

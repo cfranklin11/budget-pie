@@ -9,7 +9,10 @@ var bbApp = bbApp || {};
       dollarsThisYear: 100,
       dollarsLastYear: 100,
       percent: 0.2,
-      benefits: ['benefit1', 'benefit2', 'benefit3']
+      benefits: ['benefit1', 'benefit2', 'benefit3'],
+      clickRate: 0.02,
+      clicks: 2,
+      impressions: 100,
     }
   });
 })();
