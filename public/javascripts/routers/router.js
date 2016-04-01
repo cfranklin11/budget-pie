@@ -27,7 +27,6 @@ var bbApp = bbApp || {};
     },
     getBudgets: function(inputs) {
 
-      console.log(inputs);
       $('#collapseOne').collapse('hide');
 
       bbApp.budgets.fetch({

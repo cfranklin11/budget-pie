@@ -13,7 +13,6 @@ module.exports = function(app) {
   });
 
   app.get('/upload', function(req, res, next) {
-    console.log(req.headers);
     dataHelper.uploadData(req, res, next);
   });
 };

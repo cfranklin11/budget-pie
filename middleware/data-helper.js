@@ -49,7 +49,6 @@ module.exports = {
       if (Array.isArray(inputs)) {
         inputString = inputs.join('|');
       }
-      console.log(inputString);
 
       inputsRegExp = new RegExp(inputString);
       budgetObject = {};
