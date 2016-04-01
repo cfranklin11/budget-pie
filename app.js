@@ -1,7 +1,7 @@
 'use strict';
 
 var express, path, favicon, logger, cookieParser, bodyParser, morgan,
-  methodOverride, port, app;
+  methodOverride, auth, mongoose, port, app;
 
 express = require('express');
 path = require('path');
@@ -10,9 +10,13 @@ logger = require('morgan');
 cookieParser = require('cookie-parser');
 bodyParser = require('body-parser');
 methodOverride = require( 'method-override' );
+auth = require('./config/auth.js')
+mongoose = require('mongoose');
 
 port = process.env.PORT || 8080;
 app = express();
+
+mongoose.connect(auth.url);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

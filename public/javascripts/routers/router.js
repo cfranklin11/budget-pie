@@ -12,18 +12,10 @@ var bbApp = bbApp || {};
         event.preventDefault();
 
         inputs = $('form :input');
-        values = {};
+        values = [];
         inputs.each(function() {
           if(this.checked) {
-            if (!values[this.name]) {
-              if(this.type === 'radio') {
-                values[this.name] = $(this).val();
-              } else {
-                values[this.name] = [$(this).val()];
-              }
-            } else {
-              values[this.name].push($(this).val());
-            }
+            values.push($(this).val());
           }
         });
 
@@ -35,8 +27,18 @@ var bbApp = bbApp || {};
     },
     getBudgets: function(inputs) {
 
-      console.log(inputs);
       $('#collapseOne').collapse('hide');
+
+      bbApp.budgets.fetch({
+        data: {data: inputs},
+        method: 'POST',
+        success: function(res, budgets) {
+          console.log(budgets);
+        },
+        error: function(res) {
+          console.log(res);
+        }
+      });
     }
   });
 
