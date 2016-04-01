@@ -91,25 +91,26 @@ module.exports = {
     });
   },
   uploadData: function(req, res, next) {
-    // var parser, i, budget;
+    var parser, i, persona, arrays;
 
-    // parser = parse({delimiter: ',', columns: true}, function(err, data){
-    //   for (i = 0; i < data.length; i++) {
+    parser = parse({delimiter: ',', columns: true}, function(err, data){
+      for (i = 0; i < data.length; i++) {
 
-    //     budget = new Budget(data[i]);
+        arrays.push(data[i]);
 
-    //     budget.save(model,
-    //       function ( err ) {
-    //         if ( err ) {
-    //           console.log(err);
-    //           res.redirect('/');
-    //         }
-    //     });
-    //   }
+        // persona = new Persona(data[i]);
 
-    //   res.redirect('/');
-    // });
+        // persona.save(function ( err ) {
+        //   if ( err ) {
+        //     console.log(err);
+        //     res.redirect('/');
+        //   }
+        // });
+      }
+console.log(arrays);
+      res.redirect('/');
+    });
 
-    // fs.createReadStream(__dirname + '/data.csv').pipe(parser);
+    fs.createReadStream(__dirname + '/data.csv').pipe(parser);
   }
 };
