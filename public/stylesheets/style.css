@@ -6,3 +6,28 @@ body {
 a {
   color: #00B7FF;
 }
+
+.budget-card {
+  display: inline-block;
+  width: 40%;
+}
+
+/* SVG ELEMENTS */
+
+.chart {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  padding-bottom: 50%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+svg {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  padding-left: 25%;
+}
