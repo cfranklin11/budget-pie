@@ -26,6 +26,7 @@ var bbApp = bbApp || {};
       Backbone.history.start();
     },
     getBudgets: function(inputs) {
+      var i;
 
       $('#collapseOne').collapse('hide');
 
@@ -37,6 +38,10 @@ var bbApp = bbApp || {};
 
           bbApp.budgets.reset(budgets);
           self.budgetsView = new bbApp.BudgetsView({collection: bbApp.budgets});
+
+          for (i = 0; i < budgets.length; i++) {
+            bbApp.D3Helper.createCircleChart(budgets[i]);
+          }
         },
         error: function(res) {
           console.log(res);

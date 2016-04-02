@@ -3,81 +3,55 @@
 var bbApp = bbApp || {};
 
 bbApp.D3Helper = {
-  //Create pie chart for 'live' performance views
   createCircleChart: function ( data ) {
 
-    var title, w, h, percentage, svg, outerR, innerR;
+    var title, w, h, percentage, svg, outerR, innerR, centerX, centerY,
+      percentageString, labelSize, outerColor, innerColor, labelColor;
 
-      title = data.title;
-      w = 1000;
-      h = 800;
-      percentage = data.budgetPercent;
+    console.log(data);
 
-    svg = d3.select( '#' + title );
-      .append( 'svg' );
-      .attr( 'width', w );
-      .attr( 'height', h );
-      .attr( 'viewBox', '0 0 ' + w + ' ' + h );
+    title = data.title;
+    w = 90;
+    h = 100;
+    percentage = data.budgetPercent;
+
+    svg = d3.select('#' + title)
+      .append( 'svg' )
+      .attr( 'width', w.toFixed(0) + '%' )
+      .attr( 'height', h.toFixed(0) + '%' )
+      .attr( 'viewBox', '0 0 ' + w + ' ' + h )
       .attr( 'preserveAspectRatio', 'xMinYMin meet' );
 
-      outerR = d3.min([ h, w ]);
+      outerR = h / 2;
       innerR = outerR * percentage;
-      midR = outerR * 0.9,
-      cx = w / 2,
-      cy = h / 2,
-      percentage = metricSum / metricTarget,
-      percentageString = ( percentage * 100 ).toFixed( 1 ),
-      angle = percentage * 2 * Math.PI,
-      xCoord = Math.sin( angle ),
-      yCoord = Math.cos( angle ),
-      labelSize = 96,
-      circleColor, pathColor;
+      centerX = w / 2;
+      centerY = h / 2;
+      percentageString = ( percentage * 100 ).toFixed( 1 );
+      labelSize = 1;
+      outerColor = '#000000';
+      innerColor = '#FFFFFF';
+      labelColor = '#00FF00';
 
-    // If metric >= 100% of target, main circle a shade darker,
-    // and path is one more shade darker
-    if ( angle < 2 * Math.PI ) {
-      circleColor = '#CCCCCC';
-      pathColor = '#2DB492';
-    } else {
-      circleColor = '#2DB492';
-      pathColor = '#B5FFEC';
-    }
-
-    // Concavity of pie slice arc depends on whether it travels to right (< pi) or left (> pi)
-    angle % ( 2 * Math.PI ) > Math.PI ? largeArc = 1 : largeArc = 0;
-
-    // Create background circle (target of metric)
+    // Create background circle (total budget value)
     svg.append( 'circle' )
-      .attr( 'cx', cx )
-      .attr( 'cy', cy )
-      .attr( 'r', outerR )
-      .attr( 'fill', circleColor );
+      .attr( 'cx', centerX.toFixed(0) + '%' )
+      .attr( 'cy', centerY.toFixed(0) + '%' )
+      .attr( 'r', outerR.toFixed(0) + '%')
+      .attr( 'fill', outerColor );
 
-    // Create donut slice on top of circle (total of metric so far),
-    // making fill same color as background circle to avoid clipping
-    svg.append( 'path' )
-      .attr( 'd', 'M' + cx + ' ' + ( cy - midR ) +
-        ' A ' + midR + ' ' + midR + ' 0 ' + largeArc + ' 1 ' +
-        ( cx + xCoord * midR ) + ' ' + ( cy - yCoord * midR ))
-      .attr( 'fill', circleColor )
-      .attr( 'stroke', pathColor )
-      .attr( 'stroke-width', outerR * 0.2 )
-      .attr( 'stroke-linecap', 'round' );
-
-    // Create interior circle that matches background to create donut chart
+    // Create interior circle (this budget item's value)
     svg.append( 'circle' )
-      .attr( 'cx', cx )
-      .attr( 'cy', cy )
-      .attr( 'r', innerR )
-      .attr( 'fill', '#FFFFFF' );
+      .attr( 'cx', centerX.toFixed(0) + '%' )
+      .attr( 'cy', centerY.toFixed(0) + '%' )
+      .attr( 'r', innerR.toFixed(0) + '%' )
+      .attr( 'fill', innerColor );
 
-    // Add data label to donut chart
     svg.append( 'text' )
-      .attr( 'x', cx )
-      .attr( 'y', cy + ( labelSize / 4 ))
+      .attr( 'x', centerX.toFixed(0) + '%' )
+      .attr( 'y', (centerY - labelSize * 5).toFixed(0) + '%')
       .attr( 'text-anchor', 'middle' )
-      .attr( 'font-size', labelSize )
-      .attr( 'fill', pathColor )
+      .attr( 'font-size', labelSize.toFixed(0) + 'em' )
+      .attr( 'fill', labelColor )
       .text( percentageString + '%' );
   }
 };
