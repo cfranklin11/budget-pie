@@ -2,7 +2,7 @@
 
 var bbApp = bbApp || {};
 
-(function($, d3) {
+(function($) {
   bbApp.BudgetView = Backbone.View.extend({
     className: 'budget-card',
     template: _.template(
@@ -22,4 +22,4 @@ var bbApp = bbApp || {};
       return this;
     }
   });
-})(jQuery, d3);
+})(jQuery);
