@@ -12,7 +12,7 @@ var bbApp = bbApp || {};
       benefits: ['benefit1', 'benefit2', 'benefit3'],
       clickRate: 0.02,
       clicks: 2,
-      impressions: 100,
+      impressions: 100
     }
   });
 })();
