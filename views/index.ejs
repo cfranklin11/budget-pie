@@ -1,133 +1,115 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= title %></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css">
+    <link rel='stylesheet' href='/stylesheets/custom.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <% include ./partials/navbar.ejs %>
+    <form method="post" action="/">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne">
           <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Group Demographic Info
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Basic details
             </a>
           </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body">
-
-            <form method="post" action="/">
-              <fieldset>
-                <legend>Ages</legend>
-                <label for="ages-1824">18 - 24</label>
-                <input type="checkbox" name="ages-1824" id="ages-1824" value="ages-1824">
-                <label for="ages-2534">25 - 34</label>
-                <input type="checkbox" name="ages-2534" id="ages-2534" value="ages-2534">
-                <label for="ages-3544">35 - 44</label>
-                <input type="checkbox" name="ages-3544" id="ages-3544" value="ages-3544">
-                <label for="ages-4554">45 - 54</label>
-                <input type="checkbox" name="ages-4554" id="ages-4554" value="ages-4554">
-                <label for="ages-5564">55 - 64</label>
-                <input type="checkbox" name="ages-5564" id="ages-5564" value="ages-5564">
-                <label for="ages-65">65+</label>
-                <input type="checkbox" name="ages-65" id="ages-65" value="ages-65">
-              </fieldset>
-              <fieldset>
-                <legend>Work Status</legend>
-                <label for="work-fulltime">Employed: Full-Time</label>
-                <input type="radio" name="work-fulltime" id="work-fulltime" value="work-fulltime">
-                <label for="work-parttime">Employed: Part-Time</label>
-                <input type="radio" name="work-parttime" id="work-parttime" value="work-parttime">
-                <label for="work-unemployed">Unemployed</label>
-                <input type="radio" name="work-unemployed" id="work-unemployed" value="work;-unemployed">
-              </fieldset>
-              <fieldset>
-                <legend>Yearly Household Income</legend>
-                <label for="income-050">Up to $50K</label>
-                <input type="radio" name="income-050" id="income-050" value="income-050">
-                <label for="income-51100">$51 - $100K</label>
-                <input type="radio" name="income-51100" id="income-51100" value="income-51100">
-                <label for="income-101150">$101 - $150K</label>
-                <input type="radio" name="income-101150" id="income-101150" value="income-101150">
-                <label for="income-151">More than $150K</label>
-                <input type="radio" name="income-151" id="income-151" value="income-151">
-              </fieldset>
-              <fieldset>
-                <legend>Where are you living?</legend>
-                <label for="live-metro">Melbourne</label>
-                <input type="radio" name="live-metro" id="live-metro" value="live-metro">
-                <label for="live-region">Regional Victoria</label>
-                <input type="radio" name="live-region" id="live-region" value="live-region">
-              </fieldset>
-              <fieldset>
-                <legend>Are you a student?</legend>
-                <label for="student">Yes</label>
-                <input type="checkbox" name="student" id="student" value="student">
-              </fieldset>
-              <fieldset>
-                <legend>Relationship Status</legend>
-                <label for="rel-single">Single</label>
-                <input type="radio" name="relationship-single" id="rel-single" value="rel-single">
-                <label for="rel-married">Married</label>
-                <input type="radio" name="relationship-married" id="rel-married" value="rel-married">
-                <label for="rel-defacto">De Facto Relationship</label>
-                <input type="radio" name="relationship-defacto" id="rel-defacto" value="rel-defacto">
-              </fieldset>
-              <fieldset>
-                <legend>Children?</legend>
-                <label for="children-04">Under 5 Years Old</label>
-                <input type="checkbox" name="children-04" id="children-04" value="children-04">
-                <label for="children-514">5 - 14 Years Old</label>
-                <input type="checkbox" name="children-514" id="children-514" value="children-514">
-                <label for="children-1518">15 - 18 Years Old</label>
-                <input type="checkbox" name="children-1518" id="children-1518" value="children-1518">
-                <label for="children-1922">19 - 22 Years Old</label>
-                <input type="checkbox" name="children-1922" id="children-1922" value="children-1922">
-                <label for="children-23">23+ Years Old</label>
-                <input type="checkbox" name="children-23" id="children-23" value="children-23">
-                <label for="children-0">None</label>
-                <input type="checkbox" name="children-0" id="children-0" value="children-0">
-              </fieldset>
-              <fieldset>
-                <legend>Immigration Status</legend>
-                <label for="immi-citizen">Citizen</label>
-                <input type="radio" name="immi-citizen" id="immi-citizen" value="immi-citizen">
-                <label for="immi-permanent">Permanent Resident</label>
-                <input type="radio" name="immi-permanent" id="immi-permanent" value="immi-permanent">
-                <label for="immi-temporary">Temporary Resident</label>
-                <input type="radio" name="immi-temporary" id="immi-temporary" value="immi-temporary">
-              </fieldset>
-              <fieldset>
-                <legend>Are you an Indigenous Australian or Torres Straight Islander?</legend>
-                <label for="indigenous">Yes</label>
-                <input type="checkbox" name="indigenous" id="indigenous" value="indigenous">
-              </fieldset>
-              <fieldset>
-                <legend>Do you, or someone in your household, use any of the following services?</legend>
-                <label for="services-mental">Mental Health Services</label>
-                <input type="checkbox" name="services" id="services-mental" value="services-mental">
-                <label for="services-physical">Services for Physical Disabilities</label>
-                <input type="checkbox" name="services" id="services-physical" value="services-physical">
-              </fieldset>
-              <button type="submit">Submit</button>
-            </form>
-
+            <% include ./partials/search-form-1.ejs %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              Location
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <% include ./partials/search-form-2.ejs %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+              Ocupation
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <% include ./partials/search-form-3.ejs %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFour">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+              Legal status
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingFour">
+          <div class="panel-body">
+            <% include ./partials/search-form-4.ejs %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFive">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+              Lifestyle
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingFive">
+          <div class="panel-body">
+            <% include ./partials/search-form-5.ejs %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingSix">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+              Ipsum Lorem
+            </a>
+          </h4>
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingSix">
+          <div class="panel-body">
+            <% include ./partials/search-form-6.ejs %>
           </div>
         </div>
       </div>
     </div>
+       <div class="text-center">
+         <button type="submit" class="btn btn-primary">Search</button> <br><span class="get-pie">(and get pie!)</span>
+       </div>
+   </form>
 
     <div id="results">
     </div>
 
+
+
     <footer>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="/javascripts/assets/bootstrap.min.js"></script>
       <script type="text/javascript" src="/javascripts/lib/underscore.js"></script>
       <script type="text/javascript" src="/javascripts/lib/backbone.js"></script>
       <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -138,6 +120,7 @@
       <script type="text/javascript" src="/javascripts/routers/router.js"></script>
       <script type="text/javascript" src="/javascripts/bb-app.js"></script>
       <script type="text/javascript" src="/javascripts/d3-helper.js"></script>
+
     </footer>
   </body>
 </html>

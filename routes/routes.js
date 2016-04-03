@@ -6,7 +6,7 @@ dataHelper = require('../middleware/data-helper.js');
 
 module.exports = function(app) {
   app.get('/', function(req, res, next) {
-    res.render('index', {title: 'Budget Pie'});
+    res.render('index', {title: 'Budget Pie!'});
   });
   app.post('/', function(req, res, next) {
     dataHelper.sendJson(req, res, next);
