@@ -6,7 +6,7 @@ var bbApp = bbApp || {};
   bbApp.BudgetsView = Backbone.View.extend({
     el: $('#results'),
     template: _.template(
-      '<div id="data"></div>'),
+      '<div id="data" class="container"></div>'),
     initialize: function() {
       this.collection.on('add', this.addOne, this);
       this.collection.on('reset', this.render, this);

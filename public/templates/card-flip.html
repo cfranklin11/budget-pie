@@ -1,0 +1,47 @@
+
+    <div class="card">
+        <div class="face front">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= title %></h3>
+            </div>
+            <div class="panel-body fixed-panel">
+              <div class="chart" id="<%= title.replace(/\s/g, '-') %>"></div>
+              <p>Investment = <%= dollarsThisYear %></p>
+              <div class="benefit-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Mauris laoreet ex vel orci lobortis sagittis.
+                Nam fringilla erat eros. Curabitur rhoncus convallis
+                mauris bibendum facilisis.
+              </div>
+            </div>
+             <div class="panel-footer">
+               <div id="flipControl" class="btn btn-xs flipControl"><a class="flipLink">Learn more</a></div>
+             </div>
+          </div>
+
+        </div>
+        <div class="face back">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= title %></h3>
+            </div>
+            <div class="panel-body fixed-panel">
+              <div class="chart" id="<%= title %>"></div>
+              <p>Investment = <%= dollarsThisYear %></p>
+              <div class="benefit-description">
+                <div class="benefit-description">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Mauris laoreet ex vel orci lobortis sagittis.
+                  Nam fringilla erat eros. Curabitur rhoncus convallis
+                  mauris bibendum facilisis.
+                </div>
+              </div>
+            </div>
+             <div class="panel-footer">
+               <div id="flipControl" class="btn btn-xs  flipControl"><a class="flipLink">back</a></div>
+             </div>
+          </div>
+        </div>
+    </div>
