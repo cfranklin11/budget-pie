@@ -1,0 +1,149 @@
+fieldset {
+  margin: 12px 0 12px 0;
+}
+legend {
+  border-bottom: 0;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  background-color: #8A1430;
+  border-color: #630C21;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fafafa;
+  text-shadow: none;
+}
+.navbar-default .navbar-brand {
+  color: #FFF;
+  padding: 8px;
+  font-size: 18px;
+  width: 170px;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #CDA67C;
+}
+
+.navbar-default .navbar-brand img {
+  margin-right: 6px;
+}
+
+.navbar-default .navbar-brand span {
+  margin-top: 6px;
+    display: block;
+}
+.navbar-default .navbar-toggle {
+  border-color: #D32F57;
+  background: #58391B;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #CDA67C;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #751029;
+}
+.navbar-header {
+background-color:#8A1430!important;
+}
+
+#results {
+  padding-top: 10px;
+}
+.panel-title {
+  color: #B22D40;
+  text-transform: uppercase;
+}
+/* CARD STYLES */
+.budget-card {
+  background-color: #fafafa;
+}
+
+/* FLIP CARD STYLES */
+
+    .flip {
+        -webkit-perspective: 800;
+        perspective: 800;
+        position: relative;
+        text-align: center;
+    }
+
+        .flip .card.flipped {
+            -webkit-transform: rotatey(-180deg);
+            transform: rotatey(-180deg);
+        }
+
+        .flip .card {
+          height: 100%;
+          padding-bottom: 20px;
+          -webkit-transform-style: preserve-3d;
+          -webkit-transition: 0.5s;
+          transform-style: preserve-3d;
+          transition: 0.5s;
+        }
+
+            .flip .card .face {
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                z-index: 2;
+            }
+
+            .flip .card .front {
+                position: absolute;
+                width: 100%;
+                z-index: 1;
+            }
+
+            .flip .card .back {
+                -webkit-transform: rotatey(-180deg);
+                transform: rotatey(-180deg);
+            }
+
+    .inner {
+        height: 100px !important;
+        margin: 0px !important;
+    }
+    .packageStock {
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        font-size: 2.2em;
+    }
+    .packageFamily {
+        position: absolute;
+        bottom: 4px;
+        right: 8px;
+    }
+    .flipControl {
+        border: 1px solid #FFF!important;
+        background-color: rgba(187, 25, 19, 0.56)!important;
+        text-transform: lowercase;
+
+    }
+    .flipLink {
+      color: #FFF;
+    }
+
+span.get-pie   {
+  color: #868080;
+  font-size: 10px;
+}
+/* SVG ELEMENTS */
+
+.chart {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  padding-bottom: 50%;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+svg {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  padding-left: 25%;
+}
