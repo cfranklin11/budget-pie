@@ -7,7 +7,7 @@
               <h3 class="panel-title"><%= title %></h3>
             </div>
             <div class="panel-body fixed-panel">
-              <div class="chart" id="<%= title.replace(/\s/g, '-') %>"></div>
+              <div class="chart" id="<%= title.replace(/\s/g, '-') + '-1' %>"></div>
               <p>Investment = <%= dollarsThisYear %></p>
               <div class="benefit-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -28,7 +28,7 @@
               <h3 class="panel-title"><%= title %></h3>
             </div>
             <div class="panel-body fixed-panel">
-              <div class="chart" id="<%= title %>"></div>
+              <div class="chart" id="<%= title.replace(/\s/g, '-') + '-2' %>"></div>
               <p>Investment = <%= dollarsThisYear %></p>
               <div class="benefit-description">
                 <div class="benefit-description">

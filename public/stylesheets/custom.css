@@ -144,6 +144,6 @@ svg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 90%;
-  padding-left: 25%;
+  width: 100%;
+  padding-left: 10%;
 }
