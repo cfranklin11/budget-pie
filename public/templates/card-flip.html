@@ -8,7 +8,7 @@
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-1' %>"></div>
-              <p>Investment = <%= dollarsThisYear %></p>
+              <p>Investment = $<%= dollarsThisYear %></p>
               <div class="benefit-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Mauris laoreet ex vel orci lobortis sagittis.
@@ -29,7 +29,7 @@
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-2' %>"></div>
-              <p>Investment = <%= dollarsThisYear %></p>
+              <p>% Change from Last Year = <%= ((dollarsThisYear / dollarsLastYear - 1) * 100).toFixed(1) %>%</p>
               <div class="benefit-description">
                 <div class="benefit-description">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.

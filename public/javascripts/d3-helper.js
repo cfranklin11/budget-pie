@@ -52,11 +52,11 @@ bbApp.D3Helper = {
       .attr('font-size', labelSize.toFixed() + 'em')
       .attr('fill', labelColor)
       .text(percentageString + '%');
-  },
-  createBarChart: function ( data ) {
+ },
+  createBarChart: function (data) {
     var title, w, h, padding, labelSize, barColor, labelColor, years, count,
       totalLastYear, totalThisYear, minTotal, maxTotal, chartData, totalChange,
-      percentChange, barWidth, xScale, yRange, yScale, yAxisScale, svg, bars,
+      percentChange, barWidth, yScale, yAxisScale, svg, bars,
       label1, label2, label3, label4;
 
     w = 100;
@@ -77,7 +77,7 @@ bbApp.D3Helper = {
     totalChange = totalThisYear - totalLastYear;
     percentChange = totalThisYear / totalLastYear - 1;
 
-    barWidth = ( w ) / count;
+    barWidth = w / count;
 
     yScale = d3.scale.linear()
       .domain([minTotal, maxTotal])
@@ -93,40 +93,42 @@ bbApp.D3Helper = {
       .attr('viewBox', '0 0 ' + w.toFixed() + ' ' + h.toFixed())
       .attr('preserveAspectRatio', 'xMinYMin meet');
 
-    bars = svg.selectAll( 'rect' )
-      .data( chartData )
+    bars = svg.selectAll('rect')
+      .data(chartData)
       .enter()
-      .append( 'rect' );
-    bars.attr( 'x', function ( d, i ) { return ( i * barWidth ); })
-      .attr( 'y', function ( d ) {return h - yScale( d ) - padding; })
-      .attr( 'width', barWidth )
-      .attr( 'height', function ( d ) {return (yScale(d) - padding);})
-      .attr( 'fill', '#2DB492' );
+      .append('rect');
+    bars.attr('x', function (d, i) {return (i * barWidth * 1.1);})
+      .attr('y', function (d) {return h - yScale(d) - padding;})
+      .attr('width', barWidth * 0.9)
+      .attr('height', function (d) {return (yScale(d) - padding);})
+      .attr('fill', '#2DB492');
 
     label1 = svg.append('text')
-      .attr('x', barWidth / 2)
+      .attr('x', barWidth * 0.9 * 0.5)
       .attr('y', h - padding)
       .attr('text-anchor', 'middle')
       .attr('font-size', padding)
       .text('Last Year');
     label2 = svg.append('text')
-      .attr('x', barWidth + barWidth / 2)
+      .attr('x', barWidth * 1.1 + barWidth * 0.9 * 0.5)
       .attr('y', h - padding)
       .attr('text-anchor', 'middle')
       .attr('font-size', padding)
       .text('This Year');
 
     label3 = svg.append('text')
-      .attr('x', barWidth / 2)
-      .attr('y', h - yScale(totalLastYear) - padding + (yScale(totalLastYear) - padding) * 0.5)
+      .attr('x', barWidth * 0.9 * 0.5)
+      .attr('y', h - yScale(totalLastYear) - padding + (yScale(totalLastYear) -
+        padding) * 0.5)
       .attr('text-anchor', 'middle')
       .attr('font-size', padding)
       .text('$' + totalLastYear);
     label4 = svg.append('text')
-      .attr('x', barWidth + barWidth / 2)
-      .attr('y', h - yScale(totalThisYear) - padding + (yScale(totalThisYear) - padding) * 0.5)
+      .attr('x', barWidth * 1.1 + barWidth * 0.9 * 0.5)
+      .attr('y', h - yScale(totalThisYear) - padding + (yScale(totalThisYear) -
+        padding) * 0.5)
       .attr('text-anchor', 'middle')
       .attr('font-size', padding)
       .text('$' + totalThisYear);
-    }
+   }
 };
