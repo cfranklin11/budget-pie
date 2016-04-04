@@ -101,7 +101,7 @@ bbApp.D3Helper = {
       .attr('y', function (d) {return h - yScale(d) - padding;})
       .attr('width', barWidth * 0.9)
       .attr('height', function (d) {return (yScale(d) - padding);})
-      .attr('fill', '#2DB492');
+      .attr('fill', '#ec971f');
 
     label1 = svg.append('text')
       .attr('x', barWidth * 0.9 * 0.5)

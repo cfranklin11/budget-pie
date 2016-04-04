@@ -8,7 +8,9 @@
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-1' %>"></div>
-              <p>Investment = $<%= dollarsThisYear %></p>
+              <h4>
+                Investment <br> <span class="label label-default">$ <%= dollarsThisYear %></span>
+              </h4>
               <div class="benefit-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Mauris laoreet ex vel orci lobortis sagittis.
@@ -17,7 +19,7 @@
               </div>
             </div>
              <div class="panel-footer">
-               <div id="flipControl" class="btn btn-xs flipControl"><a class="flipLink">Learn more</a></div>
+               <div id="flipControl" class="btn btn-link flipControl"><a class="flipLink">Learn more</a></div>
              </div>
           </div>
 
@@ -29,7 +31,9 @@
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-2' %>"></div>
-              <p>% Change from Last Year = <%= ((dollarsThisYear / dollarsLastYear - 1) * 100).toFixed(1) %>%</p>
+                <h4>Percentage change from last year <br>
+                  <span class="label label-default"><%= ((dollarsThisYear / dollarsLastYear - 1) * 100).toFixed(1) %> %</span>
+                </h4>
               <div class="benefit-description">
                 <div class="benefit-description">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -40,7 +44,7 @@
               </div>
             </div>
              <div class="panel-footer">
-               <div id="flipControl" class="btn btn-xs  flipControl"><a class="flipLink">back</a></div>
+               <div id="flipControl" class="btn btn-link  flipControl"><a class="flipLink">Back</a></div>
              </div>
           </div>
         </div>
