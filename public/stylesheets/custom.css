@@ -7,6 +7,8 @@ legend {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.navbar { margin-bottom: 10px; }
+
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   background-color: #8A1430;
   border-color: #630C21;
