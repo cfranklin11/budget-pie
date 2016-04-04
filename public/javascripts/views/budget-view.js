@@ -29,6 +29,7 @@ var bbApp = bbApp || {};
         }, 'html')
         .complete(function() {
           bbApp.D3Helper.createCircleChart(attributes);
+          bbApp.D3Helper.createBarChart(attributes);
         });
 
       return this;
