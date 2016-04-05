@@ -6,6 +6,7 @@ var bbApp = bbApp || {};
   bbApp.Budget = Backbone.Model.extend({
     defaults: {
       title: 'dummy program',
+      department: 'dummy department',
       dollarsThisYear: 100,
       dollarsLastYear: 100,
       budgetPercent: 0.2,
