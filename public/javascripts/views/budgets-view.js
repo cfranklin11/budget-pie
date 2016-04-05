@@ -15,8 +15,6 @@ var bbApp = bbApp || {};
     render: function(options) {
       var self, length, i;
 
-      console.log(this);
-
       self = this;
       this.min = options.min;
       this.max = options.max;
@@ -29,8 +27,6 @@ var bbApp = bbApp || {};
     },
     addOne: function(budget, self) {
       var budgetView;
-
-      console.log(budget);
 
       budgetView = new bbApp.BudgetView({model: budget});
       self.$el.children('#data').append(budgetView.render().el);

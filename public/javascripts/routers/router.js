@@ -27,18 +27,24 @@ var bbApp = bbApp || {};
 
       // Get more results event
       $('#more-results').click(function() {
-        var budgetsView, newMin, newMax, i;
+        var budgetsView, newMin, newMax, collection, collectionLength, length,
+          models, i;
 
         budgetsView = window.budgetsView;
+
         if (budgetsView) {
           newMin = budgetsView.min + 4;
           newMax = budgetsView.max + 4;
+          collection = budgetsView.collection;
+          collectionLength = collection.length;
+          length = Math.min(newMax, collectionLength);
+          models = collection.models;
 
-          for (i = newMin; i < Math.min(newMax, budgetsView.collection.length); i++) {
-            budgetsView.addOne(budgetsView.collection.models[i], budgetsView);
+          for (i = newMin; i < length; i++) {
+            budgetsView.addOne(models[i], budgetsView);
           }
 
-          if (newMax => budgetsView.collection.length) {
+          if (newMax >= collectionLength) {
             $('#more-results').attr('disabled', true);
           }
         }
@@ -112,7 +118,6 @@ var bbApp = bbApp || {};
             clicks: 2,
             impressions: 100}
           ];
-
 
           bbApp.budgets.reset(budgets);
           self.budgetsView = new bbApp.BudgetsView({
