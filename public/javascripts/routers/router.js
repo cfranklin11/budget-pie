@@ -6,6 +6,8 @@ var bbApp = bbApp || {};
   var AppRouter = Backbone.Router.extend({
     initialize: function() {
       var self = this;
+
+      // Form submit event
       $('form').submit(function(event) {
         var inputs, values;
 
@@ -20,6 +22,32 @@ var bbApp = bbApp || {};
         });
 
         self.getBudgets(values);
+        $('#more-results').removeAttr('hidden');
+      });
+
+      // Get more results event
+      $('#more-results').click(function() {
+        var budgetsView, newMin, newMax, collection, collectionLength, length,
+          models, i;
+
+        budgetsView = window.budgetsView;
+
+        if (budgetsView) {
+          newMin = budgetsView.min + 4;
+          newMax = budgetsView.max + 4;
+          collection = budgetsView.collection;
+          collectionLength = collection.length;
+          length = Math.min(newMax, collectionLength);
+          models = collection.models;
+
+          for (i = newMin; i < length; i++) {
+            budgetsView.addOne(models[i], budgetsView);
+          }
+
+          if (newMax >= collectionLength) {
+            $('#more-results').attr('disabled', true);
+          }
+        }
       });
     },
     start: function () {
@@ -44,6 +72,7 @@ var bbApp = bbApp || {};
             clickRate: 0.02,
             clicks: 2,
             impressions: 100},
+
             {title: 'dummy program2',
             dollarsThisYear: 80,
             dollarsLastYear: 100,
@@ -52,6 +81,7 @@ var bbApp = bbApp || {};
             clickRate: 0.02,
             clicks: 2,
             impressions: 100},
+
             {title: 'dummy program3',
             dollarsThisYear: 80,
             dollarsLastYear: 100,
@@ -60,7 +90,26 @@ var bbApp = bbApp || {};
             clickRate: 0.02,
             clicks: 2,
             impressions: 100},
+
             {title: 'dummy program4',
+            dollarsThisYear: 80,
+            dollarsLastYear: 100,
+            budgetPercent: 0.2,
+            benefits: ['benefit1', 'benefit2', 'benefit3'],
+            clickRate: 0.02,
+            clicks: 2,
+            impressions: 100},
+
+            {title: 'dummy program5',
+            dollarsThisYear: 80,
+            dollarsLastYear: 100,
+            budgetPercent: 0.2,
+            benefits: ['benefit1', 'benefit2', 'benefit3'],
+            clickRate: 0.02,
+            clicks: 2,
+            impressions: 100},
+
+            {title: 'dummy program6',
             dollarsThisYear: 80,
             dollarsLastYear: 100,
             budgetPercent: 0.2,
@@ -70,9 +119,12 @@ var bbApp = bbApp || {};
             impressions: 100}
           ];
 
-
           bbApp.budgets.reset(budgets);
-          self.budgetsView = new bbApp.BudgetsView({collection: bbApp.budgets});
+          self.budgetsView = new bbApp.BudgetsView({
+            collection: bbApp.budgets,
+            min: 0,
+            max: 4
+          });
 
           // for (i = 0; i < budgets.length; i++) {
           //   bbApp.D3Helper.createCircleChart(budgets[i]);
