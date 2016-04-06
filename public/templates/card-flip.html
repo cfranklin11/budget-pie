@@ -4,11 +4,19 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title"><%= title %></h3>
+              <h4 class="panel-title"><%= title %></h4>
+              <h5>Department of CTM</h5>
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-1' %>"></div>
-              <p>Investment = $<%= dollarsThisYear %></p>
+              <h5>
+                Investment <span class="label label-default">$ <%= dollarsThisYear %></span>
+              </h5>
+
+              <h5> <span style="color:#F6A200; font-weight:600"><%= (budgetPercent * 100).toFixed(1) %>%</span> of Department Budget </h5>
+
+
+
               <div class="benefit-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Mauris laoreet ex vel orci lobortis sagittis.
@@ -17,7 +25,7 @@
               </div>
             </div>
              <div class="panel-footer">
-               <div id="flipControl" class="btn btn-xs flipControl"><a class="flipLink">Learn more</a></div>
+               <div id="flipControl" class="btn btn-link flipControl"><a class="flipLink">Learn more</a></div>
              </div>
           </div>
 
@@ -25,11 +33,14 @@
         <div class="face back">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title"><%= title %></h3>
+              <h4 class="panel-title"><%= title %></h4>
+              <h5>Department of CTM</h5>
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-2' %>"></div>
-              <p>% Change from Last Year = <%= ((dollarsThisYear / dollarsLastYear - 1) * 100).toFixed(1) %>%</p>
+                <h5>Percentage change from last year <br>
+                  <span class="label label-default"><%= ((dollarsThisYear / dollarsLastYear - 1) * 100).toFixed(1) %> %</span>
+                </h5>
               <div class="benefit-description">
                 <div class="benefit-description">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -40,7 +51,7 @@
               </div>
             </div>
              <div class="panel-footer">
-               <div id="flipControl" class="btn btn-xs  flipControl"><a class="flipLink">back</a></div>
+               <div id="flipControl" class="btn btn-link  flipControl"><a class="flipLink">Back</a></div>
              </div>
           </div>
         </div>

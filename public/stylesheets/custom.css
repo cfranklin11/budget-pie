@@ -7,6 +7,8 @@ legend {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.navbar { margin-bottom: 10px; }
+
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   background-color: #8A1430;
   border-color: #630C21;
@@ -59,6 +61,9 @@ background-color:#8A1430!important;
   background-color: #fafafa;
 }
 
+.benefit-description {
+  color: #666;
+}
 /* FLIP CARD STYLES */
 
     .flip {
@@ -115,13 +120,12 @@ background-color:#8A1430!important;
         right: 8px;
     }
     .flipControl {
-        border: 1px solid #FFF!important;
-        background-color: rgba(187, 25, 19, 0.56)!important;
-        text-transform: lowercase;
+        text-decoration: underline;
+        text-transform: capitalize;;
 
     }
     .flipLink {
-      color: #FFF;
+
     }
 
 span.get-pie   {
@@ -134,11 +138,14 @@ span.get-pie   {
   display: inline-block;
   position: relative;
   width: 50%;
-  padding-bottom: 50%;
+  padding-bottom: 35%;
   vertical-align: middle;
   overflow: hidden;
 }
 
+.card h4 {
+  line-height: 1.5;
+}
 svg {
   display: inline-block;
   position: absolute;
