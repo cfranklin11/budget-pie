@@ -15,4 +15,7 @@ module.exports = function(app) {
   app.get('/upload', function(req, res, next) {
     dataHelper.uploadData(req, res, next);
   });
+  app.get('/reset', function(req, res, next) {
+    dataHelper.resetData(req, res, next);
+  });
 };

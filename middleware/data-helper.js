@@ -98,7 +98,7 @@ module.exports = {
   },
   uploadData: function(req, res, next) {
     var parser, i, thisData, personaName, thisBudget, personaObject,
-      personaArray, item, newPersona;
+      personaArray, budgets, budgetLength, j, match, item, newPersona;
 
     personaObject = {};
     personaArray = [];
@@ -107,20 +107,36 @@ module.exports = {
       for (i = 0; i < data.length; i++) {
 
         thisData = data[i];
-        personaName = thisData.personaName;
+        personaName = thisData.name;
         thisBudget = {
-          title: thisData.budgetTitle,
-          dollarsThisYear: thisData.budgetDollarsThisYear,
-          dollarsLastYear: thisData.budgetDollarsLastYear,
-          budgetPercent: thisData.budgetBudgetPercent,
-          benefits: [thisData.budgetBenefits],
-          clickRate: thisData.budgetClickRate,
-          clicks: thisData.budgetClicks,
-          impressions: thisData.budgetImpressions
+          title: thisData.title,
+          department: thisData.department,
+          dollarsThisYear: thisData.dollarsThisYear,
+          dollarsLastYear: thisData.dollarsLastYear,
+          budgetPercent: thisData.budgetPercent,
+          benefits: [thisData.benefits],
+          clickRate: thisData.clickRate,
+          clicks: thisData.clicks,
+          impressions: thisData.impressions
         };
 
         if (personaObject[personaName]) {
-          personaObject[personaName].budgets.push(thisBudget);
+          budgets = personaObject[personaName].budgets;
+          budgetLength = budgets.length;
+
+          for (j = 0; j < budgetLength; j++) {
+            match = false;
+
+            if (budgets[j].title === thisBudget.title) {
+              personaObject[personaName].budgets[j].benefits.push(thisBudget.benefits[0]);
+              match = true;
+            }
+          }
+
+          if (!match) {
+            personaObject[personaName].budgets.push(thisBudget);
+          }
+
         } else {
           personaObject[personaName] = {
             name: personaName,
@@ -144,6 +160,9 @@ module.exports = {
       res.redirect('/');
     });
 
-    fs.createReadStream(__dirname + '/test-data.csv').pipe(parser);
+    fs.createReadStream(__dirname + '/model-data.csv').pipe(parser);
+  },
+  resetData: function(req, res, next) {
+
   }
 };
