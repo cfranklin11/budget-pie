@@ -107,17 +107,17 @@ module.exports = {
       for (i = 0; i < data.length; i++) {
 
         thisData = data[i];
-        personaName = thisData.personaName;
+        personaName = thisData.name;
         thisBudget = {
-          title: thisData.budgetTitle,
-          department: thisData.budgetTitle,
-          dollarsThisYear: thisData.budgetDollarsThisYear,
-          dollarsLastYear: thisData.budgetDollarsLastYear,
-          budgetPercent: thisData.budgetBudgetPercent,
-          benefits: [thisData.budgetBenefits],
-          clickRate: thisData.budgetClickRate,
-          clicks: thisData.budgetClicks,
-          impressions: thisData.budgetImpressions
+          title: thisData.title,
+          department: thisData.department,
+          dollarsThisYear: thisData.dollarsThisYear,
+          dollarsLastYear: thisData.dollarsLastYear,
+          budgetPercent: thisData.budgetPercent,
+          benefits: [thisData.benefits],
+          clickRate: thisData.clickRate,
+          clicks: thisData.clicks,
+          impressions: thisData.impressions
         };
 
         if (personaObject[personaName]) {
@@ -128,7 +128,7 @@ module.exports = {
             match = false;
 
             if (budgets[j].title === thisBudget.title) {
-              personaObject[personaName].budgets.benefits.push(thisBudget.benefits[0]);
+              personaObject[personaName].budgets[j].benefits.push(thisBudget.benefits[0]);
               match = true;
             }
           }
