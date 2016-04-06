@@ -4,13 +4,19 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title"><%= title %></h3>
+              <h4 class="panel-title"><%= title %></h4>
+              <h5>Department of CTM</h5>
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-1' %>"></div>
-              <h4>
-                Investment <br> <span class="label label-default">$ <%= dollarsThisYear %></span>
-              </h4>
+              <h5>
+                Investment <span class="label label-default">$ <%= dollarsThisYear %></span>
+              </h5>
+
+              <h5> <span style="color:#F6A200; font-weight:600"><%= (budgetPercent * 100).toFixed(1) %>%</span> of Department Budget </h5>
+
+
+
               <div class="benefit-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Mauris laoreet ex vel orci lobortis sagittis.
@@ -27,13 +33,14 @@
         <div class="face back">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title"><%= title %></h3>
+              <h4 class="panel-title"><%= title %></h4>
+              <h5>Department of CTM</h5>
             </div>
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-2' %>"></div>
-                <h4>Percentage change from last year <br>
+                <h5>Percentage change from last year <br>
                   <span class="label label-default"><%= ((dollarsThisYear / dollarsLastYear - 1) * 100).toFixed(1) %> %</span>
-                </h4>
+                </h5>
               <div class="benefit-description">
                 <div class="benefit-description">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
