@@ -16,7 +16,6 @@ var bbApp = bbApp || {};
 
       $(e.currentTarget).closest('.card').toggleClass('flipped');
     },
-
     render: function () {
       var attributes, self;
       self = this;
@@ -33,7 +32,6 @@ var bbApp = bbApp || {};
         });
 
       return this;
-
     }
 
   });
