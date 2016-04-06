@@ -9,13 +9,10 @@
             <div class="panel-body fixed-panel">
               <div class="chart" id="<%= title.replace(/\s/g, '-') + '-1' %>"></div>
               <h4>
-                Investment <br> <span class="label label-default">$ <%= dollarsThisYear %></span>
+                Investment <br> <span class="label label-default">$<%= (dollarsThisYear / 1000000).toFixed(1) %> mil</span>
               </h4>
               <div class="benefit-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Mauris laoreet ex vel orci lobortis sagittis.
-                Nam fringilla erat eros. Curabitur rhoncus convallis
-                mauris bibendum facilisis.
+                <%= benefits[0] %>
               </div>
             </div>
              <div class="panel-footer">
@@ -36,10 +33,13 @@
                 </h4>
               <div class="benefit-description">
                 <div class="benefit-description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris laoreet ex vel orci lobortis sagittis.
-                  Nam fringilla erat eros. Curabitur rhoncus convallis
-                  mauris bibendum facilisis.
+                  <% if (benefits[1]) { %>
+                    <%= benefits[1] %>
+                  <% } %>
+
+                  <% if (benefits[2]) { %>
+                    <%= benefits[2] %>
+                  <% } %>
                 </div>
               </div>
             </div>

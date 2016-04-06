@@ -138,7 +138,7 @@ span.get-pie   {
   display: inline-block;
   position: relative;
   width: 50%;
-  padding-bottom: 35%;
+  padding-bottom: 45%;
   vertical-align: middle;
   overflow: hidden;
 }
@@ -154,3 +154,6 @@ svg {
   width: 100%;
   padding-left: 10%;
 }
+/*#circle {
+  padding-left: 20%;
+}*/
