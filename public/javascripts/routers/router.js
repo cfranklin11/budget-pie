@@ -26,7 +26,7 @@ var bbApp = bbApp || {};
 
         } else {
           self.getBudgets(values);
-          $('#more-results').removeAttr('hidden');
+          $('#more-results').parent('div').removeAttr('hidden');
         }
       });
 
