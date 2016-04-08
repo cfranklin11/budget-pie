@@ -21,8 +21,13 @@ var bbApp = bbApp || {};
           }
         });
 
-        self.getBudgets(values);
-        $('#more-results').removeAttr('hidden');
+        if (values.length === 0) {
+          alert("No demographic information entered. Please fill in at least one field.");
+
+        } else {
+          self.getBudgets(values);
+          $('#more-results').removeAttr('hidden');
+        }
       });
 
       // Get more results event
