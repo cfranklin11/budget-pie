@@ -26,7 +26,6 @@ var bbApp = bbApp || {};
 
         } else {
           self.getBudgets(values);
-          $('#more-results').parent('div').removeAttr('hidden');
         }
       });
 
@@ -78,6 +77,8 @@ var bbApp = bbApp || {};
           for (i = 0; i < budgets.length; i++) {
             bbApp.D3Helper.createCircleChart(budgets[i]);
           }
+
+          $('#more-results').parent('div').removeAttr('hidden');
         },
         error: function(res) {
           console.log(res);
