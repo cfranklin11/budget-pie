@@ -21,8 +21,12 @@ var bbApp = bbApp || {};
           }
         });
 
-        self.getBudgets(values);
-        $('#more-results').removeAttr('hidden');
+        if (values.length === 0) {
+          alert("No demographic information entered. Please fill in at least one field.");
+
+        } else {
+          self.getBudgets(values);
+        }
       });
 
       // Get more results event
@@ -73,6 +77,8 @@ var bbApp = bbApp || {};
           for (i = 0; i < budgets.length; i++) {
             bbApp.D3Helper.createCircleChart(budgets[i]);
           }
+
+          $('#more-results').parent('div').removeAttr('hidden');
         },
         error: function(res) {
           console.log(res);
