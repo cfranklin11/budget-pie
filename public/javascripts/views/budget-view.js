@@ -5,16 +5,37 @@ var bbApp = bbApp || {};
 (function($) {
   bbApp.BudgetView = Backbone.View.extend({
 
-    className: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 flip',
+    className: 'col-xs-12 col-sm-6 col-md-3 col-lg-3 flip',
     events: {
       'click .flipControl': 'flip'
     },
     initialize: function () {
     },
     flip: function (e) {
-      e.preventDefault();
+      var personas, thisCard;
 
-      $(e.currentTarget).closest('.card').toggleClass('flipped');
+      e.preventDefault();
+      thisCard = $(e.currentTarget).closest('.card');
+
+      if (!thisCard.hasClass('flipped')) {
+        personas = window.localStorage.getItem('personas');
+
+        this.model.save({
+          data: {
+            personas: personas,
+            metric: 'clicks'
+          },
+          method: 'POST',
+          success: function(res) {
+            console.log(res);
+          },
+          error: function(res) {
+            console.log(res);
+          }
+        });
+      }
+
+      thisCard.toggleClass('flipped');
     },
     render: function () {
       var attributes, self;

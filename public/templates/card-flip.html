@@ -8,7 +8,7 @@
               <h5><%= department %></h5>
             </div>
             <div class="panel-body fixed-panel">
-              <div class="chart" id="<%= title.replace(/\s/g, '-') + '-1' %>"></div>
+              <div class="chart" id="<%= title.replace(/\s/g, '-').replace(/,/g, '') + '-1' %>"></div>
 
               <h5>
                 Investment <br> <span class="label label-default">$<%= (dollarsThisYear / 1000000).toFixed(1) %> mil</span>
@@ -34,7 +34,7 @@
               <h5><%= department %></h5>
             </div>
             <div class="panel-body fixed-panel">
-              <div class="chart" id="<%= title.replace(/\s/g, '-') + '-2' %>"></div>
+              <div class="chart" id="<%= title.replace(/\s/g, '-').replace(/,/g, '') + '-2' %>"></div>
                 <h5>Percentage change from last year <br>
                   <span class="label label-default"><%= ((dollarsThisYear / dollarsLastYear - 1) * 100).toFixed(1) %> %</span>
                 </h5>

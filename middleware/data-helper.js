@@ -63,10 +63,8 @@ module.exports = {
           if (personas.length === 0) {
             console.log('no personas found');
             res.redirect('/');
+
           } else {
-
-            console.log(personas);
-
             for (i = 0; i < personas.length; i++) {
               thisPersona = personas[i];
               personaBudgets = thisPersona.budgets;
@@ -88,13 +86,61 @@ module.exports = {
               return b.clickRate - a.clickRate;
             });
 
-            res.json(budgetArray);
+            req.budgetArray = budgetArray;
+            next();
           }
         }
       });
     } else {
       res.redirect('/');
     }
+  },
+  updateModel: function(req, res, next) {
+    var body, modelTitle, metric, personaString, personaRegExp, i, thisPersona,
+      personaBudgets, j;
+
+    body = req.body;
+    modelTitle = body.title;
+    metric = body.data.metric;
+    personaString = body.data.personas.replace(',', '|');
+    personaRegExp = new RegExp(personaString);
+
+    Persona.find({'name': personaRegExp}, function(err, personas) {
+      if (err) {
+        console.log(err);
+        res.redirect('/');
+      } else {
+
+        if (personas.length === 0) {
+          console.log('no personas found');
+          res.redirect('/');
+
+        } else {
+          for (i = 0; i < personas.length; i++) {
+            thisPersona = personas[i];
+            personaBudgets = thisPersona.budgets;
+
+            for (j = 0; j < personaBudgets.length; j++) {
+              if (personaBudgets[j].title === modelTitle) {
+                personaBudgets[j][metric]++;
+                personaBudgets[j].clickRate = personaBudgets[j].clicks /
+                  personaBudgets[j].impressions;
+
+                thisPersona.save(function(err, persona) {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                  }
+                });
+                break;
+              }
+            }
+          }
+
+          next();
+        }
+      }
+    });
   },
   uploadData: function(req, res, next) {
     var parser, i, thisData, personaName, thisBudget, personaObject,
@@ -152,17 +198,12 @@ module.exports = {
       Persona.create(personaArray, function(err, personas) {
         if (err) {
           console.log(err);
-        } else {
-          console.log(personas);
         }
       });
 
-      res.redirect('/');
+      res.send('uploaded');
     });
 
     fs.createReadStream(__dirname + '/model-data.csv').pipe(parser);
-  },
-  resetData: function(req, res, next) {
-
   }
 };
