@@ -9,7 +9,7 @@ bbApp.D3Helper = {
       percentageString, labelSize, outerColor, innerColor, labelColor;
 
     title = data.title;
-    title = title.replace(/\s/g, '-');
+    title = title.replace(/\s/g, '-').replace(/,/g, '');
     w = 90;
     h = 100;
     percentage = data.budgetPercent;
@@ -70,7 +70,7 @@ bbApp.D3Helper = {
     years = ['This Year (2015/2016)', 'Last Year (2014/2015)'];
     count = years.length;
     title = data.title;
-    title = title.replace(/\s/g, '-');
+    title = title.replace(/\s/g, '-').replace(/,/g, '');
     totalLastYear = +data.dollarsLastYear;
     totalThisYear = +data.dollarsThisYear;
     minTotal = Math.min(totalLastYear, totalThisYear);
@@ -78,8 +78,6 @@ bbApp.D3Helper = {
     chartData = [totalLastYear, totalThisYear];
     totalChange = totalThisYear - totalLastYear;
     percentChange = totalThisYear / totalLastYear - 1;
-
-    console.log(chartData);
 
     barWidth = w / count;
 

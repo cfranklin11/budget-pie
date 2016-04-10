@@ -37,8 +37,8 @@ var bbApp = bbApp || {};
         budgetsView = window.budgetsView;
 
         if (budgetsView) {
-          newMin = budgetsView.min + 4;
-          newMax = budgetsView.max + 4;
+          newMin = budgetsView.min + 8;
+          newMax = budgetsView.max + 8;
           collection = budgetsView.collection;
           collectionLength = collection.length;
           length = Math.min(newMax, collectionLength);
@@ -66,12 +66,11 @@ var bbApp = bbApp || {};
         data: {data: inputs},
         method: 'POST',
         success: function(res, budgets) {
-          console.log(budgets);
           bbApp.budgets.reset(budgets);
           self.budgetsView = new bbApp.BudgetsView({
             collection: bbApp.budgets,
             min: 0,
-            max: 4
+            max: 8
           });
 
           for (i = 0; i < budgets.length; i++) {

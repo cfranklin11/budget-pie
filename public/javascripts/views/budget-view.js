@@ -5,7 +5,7 @@ var bbApp = bbApp || {};
 (function($) {
   bbApp.BudgetView = Backbone.View.extend({
 
-    className: 'col-xs-12 col-sm-6 col-md-6 col-lg-3 flip',
+    className: 'col-xs-12 col-sm-6 col-md-3 col-lg-3 flip',
     events: {
       'click .flipControl': 'flip'
     },
