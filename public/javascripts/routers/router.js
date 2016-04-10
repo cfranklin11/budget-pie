@@ -92,7 +92,7 @@ var bbApp = bbApp || {};
             max: 4
           });
 
-          for (i = 0; i < budgets.length; i++) {
+          for (i = 0; i < 4; i++) {
             bbApp.D3Helper.createCircleChart(budgets[i]);
           }
 
@@ -103,7 +103,7 @@ var bbApp = bbApp || {};
           // Update model impressions
           personas = window.localStorage.getItem('personas');
 
-          for (i = 0; i < 5; i++) {
+          for (i = 0; i < 4; i++) {
 
             bbApp.budgets.models[i].save({
               data: {

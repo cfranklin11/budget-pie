@@ -99,8 +99,6 @@ module.exports = {
     var body, modelTitle, metric, personaString, personaRegExp, i, thisPersona,
       personaBudgets, j;
 
-    console.log(req.body);
-
     body = req.body;
     modelTitle = body.title;
     metric = body.data.metric;
@@ -132,7 +130,6 @@ module.exports = {
                   if (err) {
                     console.log(err);
                   } else {
-                    console.log(persona);
                   }
                 });
                 break;
