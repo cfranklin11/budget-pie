@@ -63,10 +63,8 @@ module.exports = {
           if (personas.length === 0) {
             console.log('no personas found');
             res.redirect('/');
+
           } else {
-
-            console.log(personas);
-
             for (i = 0; i < personas.length; i++) {
               thisPersona = personas[i];
               personaBudgets = thisPersona.budgets;
@@ -88,7 +86,9 @@ module.exports = {
               return b.clickRate - a.clickRate;
             });
 
-            res.json(budgetArray);
+            req.budgetArray = budgetArray;
+            next();
+            // res.json(budgetArray);
           }
         }
       });
@@ -152,8 +152,6 @@ module.exports = {
       Persona.create(personaArray, function(err, personas) {
         if (err) {
           console.log(err);
-        } else {
-          console.log(personas);
         }
       });
 
@@ -161,8 +159,5 @@ module.exports = {
     });
 
     fs.createReadStream(__dirname + '/model-data.csv').pipe(parser);
-  },
-  resetData: function(req, res, next) {
-
   }
 };
