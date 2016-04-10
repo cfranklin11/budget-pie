@@ -12,9 +12,30 @@ var bbApp = bbApp || {};
     initialize: function () {
     },
     flip: function (e) {
-      e.preventDefault();
+      var personas, thisCard;
 
-      $(e.currentTarget).closest('.card').toggleClass('flipped');
+      e.preventDefault();
+      thisCard = $(e.currentTarget).closest('.card');
+
+      if (!thisCard.hasClass('flipped')) {
+        personas = window.localStorage.getItem('personas');
+
+        this.model.save({
+          data: {
+            personas: personas,
+            metric: 'clicks'
+          },
+          method: 'POST',
+          success: function(res) {
+            console.log(res);
+          },
+          error: function(res) {
+            console.log(res);
+          }
+        });
+      }
+
+      thisCard.toggleClass('flipped');
     },
     render: function () {
       var attributes, self;

@@ -11,9 +11,12 @@ module.exports = function(app) {
   app.post('/', dataHelper.sendJson, function(req, res) {
     res.json(req.budgetArray);
   });
+  app.post('/update', dataHelper.updateModel, function(req, res) {
+    res.json('updated');
+  })
 
   // **** Enable to reset DB data based on data csv ****
-  /*app.get('/upload', function(req, res, next) {
-    dataHelper.uploadData(req, res, next);
-  });*/
+  // app.get('/upload', function(req, res, next) {
+  //   dataHelper.uploadData(req, res, next);
+  // });
 };

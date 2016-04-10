@@ -37,8 +37,8 @@ var bbApp = bbApp || {};
         budgetsView = window.budgetsView;
 
         if (budgetsView) {
-          newMin = budgetsView.min + 8;
-          newMax = budgetsView.max + 8;
+          newMin = budgetsView.min + 4;
+          newMax = budgetsView.max + 4;
           collection = budgetsView.collection;
           collectionLength = collection.length;
           length = Math.min(newMax, collectionLength);
@@ -58,7 +58,9 @@ var bbApp = bbApp || {};
       Backbone.history.start();
     },
     getBudgets: function(inputs) {
-      var i;
+      var i, scrollTarget;
+
+      window.localStorage.setItem('personas', inputs);
 
       $('#collapseOne').collapse('hide');
 
@@ -70,13 +72,15 @@ var bbApp = bbApp || {};
           self.budgetsView = new bbApp.BudgetsView({
             collection: bbApp.budgets,
             min: 0,
-            max: 8
+            max: 4
           });
 
           for (i = 0; i < budgets.length; i++) {
             bbApp.D3Helper.createCircleChart(budgets[i]);
           }
 
+          scrollTarget = $('button[type=submit]').parent('div').offset();
+          $( 'body' ).animate({scrollTop: scrollTarget.top}, 'slow');
           $('#more-results').parent('div').removeAttr('hidden');
         },
         error: function(res) {
