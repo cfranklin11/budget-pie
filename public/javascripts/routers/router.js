@@ -32,7 +32,7 @@ var bbApp = bbApp || {};
       // Get more results event
       $('#more-results').click(function() {
         var budgetsView, newMin, newMax, collection, collectionLength, length,
-          models, i;
+          models, i, personas;
 
         budgetsView = window.budgetsView;
 
@@ -46,6 +46,23 @@ var bbApp = bbApp || {};
 
           for (i = newMin; i < length; i++) {
             budgetsView.addOne(models[i], budgetsView);
+
+            // Update model impressions
+            personas = window.localStorage.getItem('personas');
+
+            bbApp.budgets.models[i].save({
+              data: {
+                personas: personas,
+                metric: 'impressions'
+              },
+              method: 'POST',
+              success: function(res) {
+                console.log(res);
+              },
+              error: function(res) {
+                console.log(res);
+              }
+            });
           }
 
           if (newMax >= collectionLength) {
@@ -58,7 +75,7 @@ var bbApp = bbApp || {};
       Backbone.history.start();
     },
     getBudgets: function(inputs) {
-      var i, scrollTarget;
+      var i, scrollTarget, personas;
 
       window.localStorage.setItem('personas', inputs);
 
@@ -82,6 +99,26 @@ var bbApp = bbApp || {};
           scrollTarget = $('button[type=submit]').parent('div').offset();
           $( 'body' ).animate({scrollTop: scrollTarget.top}, 'slow');
           $('#more-results').parent('div').removeAttr('hidden');
+
+          // Update model impressions
+          personas = window.localStorage.getItem('personas');
+
+          for (i = 0; i < 5; i++) {
+
+            bbApp.budgets.models[i].save({
+              data: {
+                personas: personas,
+                metric: 'impressions'
+              },
+              method: 'POST',
+              success: function(res) {
+                console.log(res);
+              },
+              error: function(res) {
+                console.log(res);
+              }
+            });
+          }
         },
         error: function(res) {
           console.log(res);
