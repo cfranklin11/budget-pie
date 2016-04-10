@@ -8,14 +8,12 @@ module.exports = function(app) {
   app.get('/', function(req, res, next) {
     res.render('index', {title: 'Budget Pie!'});
   });
-  app.post('/', function(req, res, next) {
-    dataHelper.sendJson(req, res, next);
+  app.post('/', dataHelper.sendJson, function(req, res) {
+    res.json(req.budgetArray);
   });
 
-  app.get('/upload', function(req, res, next) {
+  // **** Enable to reset DB data based on data csv ****
+  /*app.get('/upload', function(req, res, next) {
     dataHelper.uploadData(req, res, next);
-  });
-  app.get('/reset', function(req, res, next) {
-    dataHelper.resetData(req, res, next);
-  });
+  });*/
 };
