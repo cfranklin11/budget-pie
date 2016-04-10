@@ -32,7 +32,7 @@ var bbApp = bbApp || {};
       // Get more results event
       $('#more-results').click(function() {
         var budgetsView, newMin, newMax, collection, collectionLength, length,
-          models, i;
+          models, i, personas;
 
         budgetsView = window.budgetsView;
 
@@ -46,6 +46,23 @@ var bbApp = bbApp || {};
 
           for (i = newMin; i < length; i++) {
             budgetsView.addOne(models[i], budgetsView);
+
+            // Update model impressions
+            personas = window.localStorage.getItem('personas');
+
+            bbApp.budgets.models[i].save({
+              data: {
+                personas: personas,
+                metric: 'impressions'
+              },
+              method: 'POST',
+              success: function(res) {
+                console.log(res);
+              },
+              error: function(res) {
+                console.log(res);
+              }
+            });
           }
 
           if (newMax >= collectionLength) {
@@ -58,7 +75,9 @@ var bbApp = bbApp || {};
       Backbone.history.start();
     },
     getBudgets: function(inputs) {
-      var i;
+      var i, scrollTarget, personas;
+
+      window.localStorage.setItem('personas', inputs);
 
       $('#collapseOne').collapse('hide');
 
@@ -66,7 +85,6 @@ var bbApp = bbApp || {};
         data: {data: inputs},
         method: 'POST',
         success: function(res, budgets) {
-          console.log(budgets);
           bbApp.budgets.reset(budgets);
           self.budgetsView = new bbApp.BudgetsView({
             collection: bbApp.budgets,
@@ -74,11 +92,33 @@ var bbApp = bbApp || {};
             max: 4
           });
 
-          for (i = 0; i < budgets.length; i++) {
+          for (i = 0; i < 4; i++) {
             bbApp.D3Helper.createCircleChart(budgets[i]);
           }
 
+          scrollTarget = $('button[type=submit]').parent('div').offset();
+          $( 'body' ).animate({scrollTop: scrollTarget.top}, 'slow');
           $('#more-results').parent('div').removeAttr('hidden');
+
+          // Update model impressions
+          personas = window.localStorage.getItem('personas');
+
+          for (i = 0; i < 4; i++) {
+
+            bbApp.budgets.models[i].save({
+              data: {
+                personas: personas,
+                metric: 'impressions'
+              },
+              method: 'POST',
+              success: function(res) {
+                console.log(res);
+              },
+              error: function(res) {
+                console.log(res);
+              }
+            });
+          }
         },
         error: function(res) {
           console.log(res);

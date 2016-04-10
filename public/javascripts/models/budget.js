@@ -4,6 +4,7 @@ var bbApp = bbApp || {};
 
 (function() {
   bbApp.Budget = Backbone.Model.extend({
+    url: '/update',
     defaults: {
       title: 'dummy program',
       department: 'dummy department',
