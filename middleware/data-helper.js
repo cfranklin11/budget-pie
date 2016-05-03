@@ -204,6 +204,6 @@ module.exports = {
       res.send('uploaded');
     });
 
-    fs.createReadStream(__dirname + '/model-data.csv').pipe(parser);
+    fs.createReadStream(__dirname + '/model-data2.csv').pipe(parser);
   }
 };

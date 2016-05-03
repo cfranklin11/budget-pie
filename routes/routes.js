@@ -15,7 +15,7 @@ module.exports = function(app) {
     res.json('updated');
   })
 
-  // **** Enable to reset DB data based on data csv ****
+  // // **** Enable to reset DB data based on data csv ****
   // app.get('/upload', function(req, res, next) {
   //   dataHelper.uploadData(req, res, next);
   // });
